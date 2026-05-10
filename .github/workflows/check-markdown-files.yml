@@ -1,0 +1,31 @@
+name: Check Markdown files
+
+on:
+  pull_request:
+    paths:
+    - '**.md'
+    - '.markdownlint-cli2.yaml'
+    - '.github/workflows/check-markdown-files.yml'
+    - 'lychee.toml'
+
+jobs:
+  lint-markdown:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+    - name: Run Markdown linter
+      uses: DavidAnson/markdownlint-cli2-action@v23
+
+  check-links:
+    name: Check links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2.8.0
+        with:
+          args: "--config lychee.toml --verbose --no-progress ./"
+          fail: true
