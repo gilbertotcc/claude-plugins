@@ -6,8 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This repository is a Claude Code **plugin marketplace**: a personal collection of plugins (skills,
 agents, commands, hooks, etc.) for Claude Code, distributed via `.claude-plugin/marketplace.json`.
-Plugins live under `plugins/<plugin-name>/` and are registered in the marketplace manifest; the
-first plugin, `markdown-editor`, is documented below as the structural reference for any new one.
+Plugins live under `plugins/<plugin-name>/` and are registered in the marketplace manifest — see
+the `plugins/` directory for current examples of the structure described below.
 
 ## Architecture
 
@@ -21,11 +21,10 @@ first plugin, `markdown-editor`, is documented below as the structural reference
   [Create and distribute a plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces)
   (referenced in README.md) — its own `.claude-plugin/plugin.json` manifest plus whichever of
   `skills/`, `agents/`, `hooks/`, `scripts/`, `.mcp.json` it needs, and its own `README.md`.
-- `plugins/markdown-editor/` — reference example: `skills/markdown-editor/` (auto-triggered
-  workflow skill) and `skills/lint/` (user-invoked as `/markdown-editor:lint`), an advisory
-  `hooks/hooks.json` PostToolUse lint check, shared `scripts/` (tool resolution: prefer a
-  global/PATH install, fall back to `npx`/on-demand fetch — documented transparently in the
-  plugin's own `README.md` since it runs tooling in whichever repo the plugin is installed into).
+- Plugins that shell out to external tooling (e.g. linters) should resolve it with a
+  global/PATH-first, `npx`-or-similar-on-demand-fallback pattern, and document that behavior
+  transparently in their own `README.md` — the tooling runs in whichever repo the plugin is
+  installed into, not just this one.
 - **Keep root `README.md`'s `## Plugins` list in sync with `marketplace.json`'s `plugins`
   array** — one bullet per entry, using that entry's `name` and `description` verbatim, whenever a
   plugin is added, removed, or its description changes.
