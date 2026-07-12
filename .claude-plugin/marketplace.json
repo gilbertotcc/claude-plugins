@@ -7,5 +7,17 @@
   },
   "description": "A curated Claude marketplace offering a selection of personal plugins",
   "plugins": [
+    {
+      "name": "markdown-editor",
+      "source": "./plugins/markdown-editor",
+      "description": "Create and edit Markdown documents, automatically recognizing and following each repository's own Markdown style (or markdownlint-cli2's sane defaults when no config exists).",
+      "version": "0.1.0",
+      "author": {
+        "name": "Gilberto Taccari",
+        "email": "gilberto.taccari@gmail.com"
+      },
+      "license": "MIT",
+      "keywords": ["markdown", "linting", "documentation", "markdownlint"]
+    }
   ]
 }
