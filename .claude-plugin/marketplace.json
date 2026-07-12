@@ -1,0 +1,11 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-marketplace.json",
+  "name": "gilbertotcc-claude-plugin",
+  "owner": {
+    "name": "Gilberto Taccari",
+    "email": "gilberto.taccari@gmail.com"
+  },
+  "description": "A curated Claude marketplace offering a selection of personal plugins",
+  "plugins": [
+  ]
+}
