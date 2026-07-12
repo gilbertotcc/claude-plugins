@@ -13,15 +13,21 @@ fallback) the same way the per-file hook does.
 
 Default sweep (no arguments):
 
-```
+```sh
 !`${CLAUDE_PLUGIN_ROOT}/scripts/run-markdownlint.sh "**/*.md"`
 ```
 
 If the argument `--fix` is present in `$ARGUMENTS`, run with auto-fix instead:
 
-```
+```sh
 !`${CLAUDE_PLUGIN_ROOT}/scripts/run-markdownlint.sh --fix "**/*.md"`
 ```
+
+The leading `!` followed by a backtick-quoted command is Claude Code's
+bash-execution syntax for commands (see `command-development`): it runs the
+command inline and substitutes its output into the prompt before Claude
+processes the rest of this file, rather than Claude having to invoke Bash
+separately after reading the instructions.
 
 After running:
 

@@ -23,14 +23,34 @@ which resolves style in this order:
 
 ## What's included
 
-| Component | What it does |
-|---|---|
-| `skills/markdown-editor/` | Auto-triggers on Markdown work; documents the lint → fix → link-check workflow and the style-resolution principle above. |
-| `skills/lint/` | User-invoked as `/markdown-editor:lint` (add `--fix` to auto-fix); sweeps every `.md` file in the repository. |
-| `commands/lint.md` | Thin fallback that points at `skills/lint/` (`@`-references it, no duplicated logic). Exists because plugin skills currently don't reliably register as slash commands when a plugin is loaded from a local/`file://` marketplace source ([anthropics/claude-code#57737](https://github.com/anthropics/claude-code/issues/57737), open as of this writing) — exactly how this marketplace is typically installed. Remove once that's fixed upstream; a skill and a command sharing a name is safe (the skill wins). |
-| `hooks/hooks.json` | Advisory `PostToolUse` hook: lints a file immediately after each `Edit`/`Write`, and reports failures back to Claude to fix. It never rewrites files on its own. |
-| `scripts/run-markdownlint.sh` | Shared binary resolution used by both the hook and the lint skill (see below). |
-| `scripts/check-links.sh` | Manual, on-demand link-checking wrapper around `lychee` (not run on every edit, since it's network-bound). |
+| Component                     | What it does                                            |
+| ----------------------------- | ------------------------------------------------------- |
+| `skills/markdown-editor/`     | Auto-triggered workflow: lint, link-check, style rules. |
+| `skills/lint/`                | User-invoked `/markdown-editor:lint` sweep (see below). |
+| `commands/lint.md`            | Fallback registration for the same command (see below). |
+| `hooks/hooks.json`            | Advisory `PostToolUse` lint check after each edit.      |
+| `scripts/run-markdownlint.sh` | Shared binary resolution (global, then `npx`).          |
+| `scripts/check-links.sh`      | Manual, on-demand `lychee` link check.                  |
+
+`skills/markdown-editor/` auto-triggers on Markdown work and documents the
+lint → fix → link-check workflow plus the style-resolution principle above.
+
+`skills/lint/` is invoked as `/markdown-editor:lint` (add `--fix` to
+auto-fix) and sweeps every `.md` file in the repository. `commands/lint.md`
+is a thin fallback that points at `skills/lint/` (`@`-references it, no
+duplicated logic) — it exists because plugin skills don't reliably register
+as slash commands when a plugin is loaded from a local/`file://` marketplace
+source ([anthropics/claude-code#57737](https://github.com/anthropics/claude-code/issues/57737)),
+exactly how this marketplace is typically installed. That issue was closed
+as *not planned*, so treat this fallback as permanent rather than
+temporary; a skill and a command sharing a name is safe (the skill wins).
+
+`hooks/hooks.json` lints a file immediately after each `Edit`/`Write` and
+reports failures back to Claude to fix — it never rewrites files on its
+own. `scripts/run-markdownlint.sh` is the shared binary resolution used by
+both the hook and the lint skill (see below). `scripts/check-links.sh` is a
+manual, on-demand link-checking wrapper around `lychee` (not run on every
+edit, since it's network-bound).
 
 ## Tool resolution (what actually runs in your repository)
 

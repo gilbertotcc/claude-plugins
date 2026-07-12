@@ -65,35 +65,49 @@ fails because neither is available.
 
 Beyond linter-enforced structure, when authoring new content:
 
-* Give every document exactly one top-level (`#`) heading.
-* Use fenced code blocks with a language tag when the content has one
-  (```` ```bash ````, ```` ```json ````, etc.) — improves readability even
-  where markdownlint doesn't require it (MD040 is commonly disabled).
-* Prefer relative links for files within the same repository.
-* Do not add a spelling or prose-style pass (British vs. American English,
+- Give every document exactly one top-level (`#`) heading.
+- Use fenced code blocks with a language tag when the content has one
+  (```` ```bash ````, ```` ```json ````, etc.) — required by MD040 unless
+  the repository's own config disables it.
+- Prefer relative links for files within the same repository.
+- Do not add a spelling or prose-style pass (British vs. American English,
   tone, etc.) unless the repository's own config or CLAUDE.md says to —
   that is a project-specific choice, not a default of this skill.
 
-## Handling Lint Failures Claude Can't Auto-Fix
+## Handling Issues That Can't Be Fixed Automatically
 
-Some rules (e.g. heading structure, line length in prose) require rewriting
-content rather than reformatting. Read the `markdownlint-cli2` output
-carefully — it names the rule (e.g. `MD013/line-length`) and line number —
-and edit the offending line directly rather than disabling the rule.
+**Lint failures `markdownlint-cli2` reports:** some rules (e.g. heading
+structure, line length in prose) require rewriting content rather than
+reformatting. Read the output carefully — it names the rule (e.g.
+`MD013/line-length`) and line number — then consult that rule's entry in
+the markdownlint rules reference (see References below) for exactly what
+it expects, and edit the offending line directly rather than disabling the
+rule.
 
-## Handling Unreachable Links
+**Unreachable links `check-links.sh` reports:**
 
-If `check-links.sh` reports a link as unreachable: first try to correct it.
-If it is confirmed correct but still unreachable (auth wall, flaky host,
-etc.), check whether the repository has a lychee ignore file (commonly
-`.lycheeignore` or configured in `lychee.toml`) and add it there with a
-comment explaining why, rather than leaving the link check red. If the
-repository has no such mechanism, flag it to the user instead of silently
-leaving a broken link.
+1. Try `WebFetch` on the link to check whether it's genuinely down or just
+   flaky.
+2. If it's genuinely down, use `WebSearch` to find the same information at
+   a working URL and swap it in.
+3. If the link is confirmed correct but persistently unreachable (auth
+   wall, flaky host, etc.), ask the user to confirm before adding it to the
+   repository's lychee ignore mechanism (commonly `.lycheeignore` or
+   configured in `lychee.toml`) — never add an exclusion unilaterally.
+   Include a dated comment explaining why, e.g.:
+
+   ```none
+   # Access from the browser worked. Last access: 2026-07-12
+   ```
+
+4. If the repository has no such ignore mechanism, flag it to the user
+   instead of silently leaving a broken link.
 
 ## References
 
-* [markdownlint rules](https://github.com/DavidAnson/markdownlint)
-* [markdownlint-cli2 configuration](https://github.com/DavidAnson/markdownlint-cli2#configuration)
-* [lychee link-exclusion
+- [markdownlint rules](https://github.com/DavidAnson/markdownlint/blob/v0.41.0/doc/Rules.md) —
+  consult the specific rule (e.g. `MD013`) to fix a reported failure
+  directly, or to explain the tradeoff to the user before deciding.
+- [markdownlint-cli2 configuration](https://github.com/DavidAnson/markdownlint-cli2#configuration)
+- [lychee link-exclusion
   docs](https://lychee.cli.rs/recipes/excluding-links/#permanently-excluding-links)

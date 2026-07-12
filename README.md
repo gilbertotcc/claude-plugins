@@ -19,7 +19,7 @@ to support a range of tasks.
 1. Add this marketplace to Claude Code:
 
    ```text
-   /plugin marketplace add gilbertotaccari/claude-plugins
+   /plugin marketplace add gilbertotcc/claude-plugins
    ```
 
    While developing locally, a filesystem path works too:

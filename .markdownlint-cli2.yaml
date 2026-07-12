@@ -9,7 +9,6 @@ config:
   MD014: false
   MD024:
     siblings_only: true
-  MD040: false
-  MD066:
+  MD060:
     style: aligned
 gitignore: true
