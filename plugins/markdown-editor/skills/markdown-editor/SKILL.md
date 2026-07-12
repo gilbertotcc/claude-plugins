@@ -121,5 +121,4 @@ rule.
   consult the specific rule (e.g. `MD013`) to fix a reported failure
   directly, or to explain the tradeoff to the user before deciding.
 - [markdownlint-cli2 configuration](https://github.com/DavidAnson/markdownlint-cli2#configuration)
-- [lychee link-exclusion
-  docs](https://lychee.cli.rs/recipes/excluding-links/#permanently-excluding-links)
+- [lychee link-exclusion docs](https://lychee.cli.rs/recipes/excluding-links/#permanently-excluding-links)
