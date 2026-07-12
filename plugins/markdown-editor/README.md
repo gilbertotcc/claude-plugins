@@ -58,4 +58,4 @@ style-audit subagent are intentionally not part of this plugin — those are
 project-specific choices, not general Markdown-editing concerns.
 
 [markdownlint-cli2]: https://github.com/DavidAnson/markdownlint-cli2
-[lychee-install]: https://lychee.cli.rs/installation/
+[lychee-install]: https://lychee.cli.rs/guides/getting-started/

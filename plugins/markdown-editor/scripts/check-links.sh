@@ -11,7 +11,7 @@ lychee is not installed, so links were NOT checked.
 Install it to enable link-checking, then re-run this check:
   macOS (Homebrew): brew install lychee
   Cargo:            cargo install lychee
-  Other methods:    https://lychee.cli.rs/installation/
+  Other methods:    https://lychee.cli.rs/guides/getting-started/
 EOF
   echo "RESULT: URLs were not checked (lychee unavailable)."
   exit 0
