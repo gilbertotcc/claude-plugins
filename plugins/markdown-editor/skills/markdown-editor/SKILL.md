@@ -102,14 +102,15 @@ rule.
    ```
 
    ```none
-   # Access to the URL was verified by <AI tool, e.g. Claude Code (<model>)> with <tool name, e.g. WebFetch>. (Last access: YYYY-MM-DD)
+   # Access to the URL was verified by <AI tool + model, e.g. Claude Code (Sonnet 5)> using <tool name, e.g. WebFetch>. (Last access: YYYY-MM-DD)
    ```
 
    Use the first form when the user checked the URL themselves (e.g. in a
-   browser); use the second when `WebFetch` (or another tool) performed the
-   check. Fill in the real git user, model, tool name, and current date —
-   never leave the angle-bracket placeholders in the committed comment. If
-   it's unclear which form applies, ask the user rather than guessing.
+   browser); use the second when Claude performed the check with a tool
+   (e.g. `WebFetch`) — Claude always knows which of the two just happened,
+   since it's the one that did (or didn't) run the check. Fill in the real
+   git user, model, tool name, and current date; never leave the
+   angle-bracket placeholders in the committed comment.
 
 4. If the repository has no such ignore mechanism, flag it to the user
    instead of silently leaving a broken link.
