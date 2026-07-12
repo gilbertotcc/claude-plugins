@@ -1,0 +1,18 @@
+{
+  "description": "Advisory markdownlint-cli2 check on Markdown files after each Edit/Write, so lint issues surface immediately instead of at CI time.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/scripts/lint-edited-file.sh",
+            "timeout": 60,
+            "statusMessage": "Linting Markdown..."
+          }
+        ]
+      }
+    ]
+  }
+}
