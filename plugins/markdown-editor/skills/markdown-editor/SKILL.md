@@ -94,11 +94,22 @@ rule.
    wall, flaky host, etc.), ask the user to confirm before adding it to the
    repository's lychee ignore mechanism (commonly `.lycheeignore` or
    configured in `lychee.toml`) — never add an exclusion unilaterally.
-   Include a dated comment explaining why, e.g.:
+   Include a dated comment recording who actually verified access, using
+   whichever of these two forms applies:
 
    ```none
-   # Access from the browser worked. Last access: 2026-07-12
+   # Access to the URL was manually verified by <git user>. (Last access: YYYY-MM-DD)
    ```
+
+   ```none
+   # Access to the URL was verified by <AI tool, e.g. Claude Code (<model>)> with <tool name, e.g. WebFetch>. (Last access: YYYY-MM-DD)
+   ```
+
+   Use the first form when the user checked the URL themselves (e.g. in a
+   browser); use the second when `WebFetch` (or another tool) performed the
+   check. Fill in the real git user, model, tool name, and current date —
+   never leave the angle-bracket placeholders in the committed comment. If
+   it's unclear which form applies, ask the user rather than guessing.
 
 4. If the repository has no such ignore mechanism, flag it to the user
    instead of silently leaving a broken link.
