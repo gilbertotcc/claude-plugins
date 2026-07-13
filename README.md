@@ -28,10 +28,10 @@ to support a range of tasks.
    /plugin marketplace add /path/to/claude-plugins
    ```
 
-2. Install a plugin from it, using `<plugin-name>@gilbertotcc-claude-plugin`:
+2. Install a plugin from it, using `<plugin-name>@gilbertotcc-claude-plugins`:
 
    ```text
-   /plugin install markdown-editor@gilbertotcc-claude-plugin
+   /plugin install markdown-editor@gilbertotcc-claude-plugins
    ```
 
 3. Run `/plugin` at any time to browse installed and available plugins interactively.
