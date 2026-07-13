@@ -16,8 +16,8 @@ steps for getting a change merged, not the structure itself.
 
 1. Create a new directory under `plugins/<plugin-name>/` with its own
    `.claude-plugin/plugin.json` manifest, plus whichever of `skills/`, `agents/`, `hooks/`,
-   `scripts/`, `.mcp.json` it needs, and its own `README.md` — see
-   [`plugins/markdown-editor/`](plugins/markdown-editor/) for a working example of this structure.
+   `scripts/`, `.mcp.json` it needs, and its own `README.md` — see any existing directory under
+   [`plugins/`](plugins/) for a working example of this structure.
 2. Register the plugin as a new entry in `.claude-plugin/marketplace.json`'s `plugins` array.
 3. Add a matching bullet to this repo's [`README.md`](README.md) under `## Plugins`, using that
    entry's `name` and `description` **verbatim** — the two lists must stay in sync, as noted in
