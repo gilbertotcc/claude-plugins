@@ -1,6 +1,6 @@
 {
   "enabledPlugins": {
     "plugin-dev@claude-plugins-official": true,
-    "markdown-editor@gilbertotcc-claude-plugin": true
+    "markdown-editor@gilbertotcc-claude-plugins": true
   }
 }
