@@ -8,6 +8,9 @@ on:
     - '.github/workflows/check-markdown-files.yml'
     - 'lychee.toml'
 
+permissions:
+  contents: read
+
 jobs:
   lint-markdown:
     name: Lint Markdown

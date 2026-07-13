@@ -47,7 +47,9 @@ claude --plugin-dir /path/to/claude-plugins/plugins/markdown-editor
 
 ## Contributing
 
-TODO
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for how to propose a new plugin and what checks a PR
+needs to pass. Contributors are expected to follow the
+[Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
 ## References
 
