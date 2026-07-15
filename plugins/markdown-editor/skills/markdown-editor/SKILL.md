@@ -2,6 +2,7 @@
 name: markdown-editor
 description: This skill should be used when the user asks to "write a README", "create a Markdown doc", "edit this .md file", "fix the markdown", "add a section to the docs", "format this as Markdown", or whenever a `.md` file is read, created, or modified. Provides the workflow and style-resolution rules for producing Markdown that matches the repository's own conventions.
 license: MIT
+model: haiku
 ---
 
 # Markdown Editor Skill

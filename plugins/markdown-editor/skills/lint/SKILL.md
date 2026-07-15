@@ -3,6 +3,8 @@ name: lint
 description: Run markdownlint-cli2 across every Markdown file in the repository, optionally auto-fixing what it can. Invoke as /markdown-editor:lint or /markdown-editor:lint --fix.
 argument-hint: "[--fix]"
 allowed-tools: Bash(${CLAUDE_PLUGIN_ROOT}/scripts/run-markdownlint.sh:*)
+license: MIT
+model: haiku
 ---
 
 # Lint Markdown
