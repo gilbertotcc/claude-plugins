@@ -31,12 +31,11 @@ in this order:
 In both cases, running the linter and fixing what it reports is sufficient —
 there is never a need to hand-author or guess at style rules.
 
-Do not use `prettier` or any other formatter on Markdown files in this
-repository. `markdownlint-cli2` is the sole style authority for both
-linting and fixing; running a different formatter can silently fight its
-rules (emphasis style, list markers, blank-line placement) and, if invoked
-via `Bash`, bypasses the `PostToolUse` hook entirely, since the hook only
-fires on `Edit`/`Write`.
+`markdownlint-cli2` is the only tool that lints or rewrites Markdown in
+this repository — do not use any other tool for that purpose. A different
+tool can silently fight its rules (emphasis style, list markers,
+blank-line placement) and, if invoked via `Bash`, bypasses the
+`PostToolUse` hook entirely, since the hook only fires on `Edit`/`Write`.
 
 ## Core Workflow
 

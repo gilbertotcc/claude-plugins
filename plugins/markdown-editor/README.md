@@ -21,9 +21,8 @@ which resolves style in this order:
    newline. These are widely-adopted community defaults, not an opinion
    introduced by this plugin.
 
-This plugin does not use `prettier` or any other formatter on Markdown —
-`markdownlint-cli2` (via `--fix`) is the only tool that rewrites file
-content; anything it can't fix requires a manual edit (see
+This plugin relies solely on `markdownlint-cli2` (via `--fix`) to rewrite
+Markdown content; anything it can't fix requires a manual edit (see
 `skills/markdown-editor/`).
 
 ## What's included
