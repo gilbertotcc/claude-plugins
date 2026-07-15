@@ -31,18 +31,28 @@ in this order:
 In both cases, running the linter and fixing what it reports is sufficient —
 there is never a need to hand-author or guess at style rules.
 
+Do not use `prettier` or any other formatter on Markdown files in this
+repository. `markdownlint-cli2` is the sole style authority for both
+linting and fixing; running a different formatter can silently fight its
+rules (emphasis style, list markers, blank-line placement) and, if invoked
+via `Bash`, bypasses the `PostToolUse` hook entirely, since the hook only
+fires on `Edit`/`Write`.
+
 ## Core Workflow
 
 A `PostToolUse` hook (`hooks/hooks.json`) automatically runs
-`scripts/run-markdownlint.sh` on every `.md` file after each `Edit`/`Write`,
-surfacing failures back to Claude. It is advisory only — it reports issues,
-it never rewrites the file itself.
+`scripts/run-markdownlint.sh --fix` on every `.md` file after each
+`Edit`/`Write`, silently applying whatever markdownlint-cli2 can fix on its
+own and surfacing only the issues it couldn't resolve back to Claude.
 
 After any content modification to a `.md` file, and before considering the
 task finished:
 
-1. **Lint:** automatic via the hook above; if it reports issues, fix them
-   and let the hook re-check on the next edit.
+1. **Lint:** automatic via the hook above — it already ran `--fix`. If it
+   still reports issues, they're ones `--fix` couldn't resolve (structural
+   rules like heading levels or line length): fix them by editing the file
+   directly — do not disable the rule to make the failure go away. Let the
+   hook re-check on the next edit.
 2. **Check links** (only once the content is otherwise finished — this step
    makes network requests, so it is not run on every edit):
    `${CLAUDE_PLUGIN_ROOT}/scripts/check-links.sh <file-or-glob>`.

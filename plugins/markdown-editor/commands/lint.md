@@ -2,6 +2,7 @@
 description: Run markdownlint-cli2 across every Markdown file in the repository, optionally auto-fixing what it can.
 argument-hint: "[--fix]"
 allowed-tools: Bash(${CLAUDE_PLUGIN_ROOT}/scripts/run-markdownlint.sh:*)
+model: haiku
 ---
 
 # Lint Markdown

@@ -35,7 +35,9 @@ After running:
    `--fix` mode, issues auto-fixed vs. remaining).
 2. For any remaining issues `--fix` could not resolve (structural rules like
    heading levels or line length), fix them by editing the reported files
-   and lines directly — do not disable the rule to make the failure go away.
+   and lines directly — do not disable the rule to make the failure go away,
+   and do not reach for `prettier` or another formatter instead;
+   `markdownlint-cli2` is the sole style authority here.
 3. If the script reports that neither `markdownlint-cli2` nor `npx` is
    available, relay that installation guidance to the user rather than
    treating the sweep as passing.

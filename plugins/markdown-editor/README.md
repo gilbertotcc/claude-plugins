@@ -21,6 +21,11 @@ which resolves style in this order:
    newline. These are widely-adopted community defaults, not an opinion
    introduced by this plugin.
 
+This plugin does not use `prettier` or any other formatter on Markdown —
+`markdownlint-cli2` (via `--fix`) is the only tool that rewrites file
+content; anything it can't fix requires a manual edit (see
+`skills/markdown-editor/`).
+
 ## What's included
 
 | Component                     | What it does                                            |
@@ -28,7 +33,7 @@ which resolves style in this order:
 | `skills/markdown-editor/`     | Auto-triggered workflow: lint, link-check, style rules. |
 | `skills/lint/`                | User-invoked `/markdown-editor:lint` sweep (see below). |
 | `commands/lint.md`            | Fallback registration for the same command (see below). |
-| `hooks/hooks.json`            | Advisory `PostToolUse` lint check after each edit.      |
+| `hooks/hooks.json`            | Auto-fixing `PostToolUse` lint check after each edit.   |
 | `scripts/run-markdownlint.sh` | Shared binary resolution (global, then `npx`).          |
 | `scripts/check-links.sh`      | Manual, on-demand `lychee` link check.                  |
 
@@ -45,9 +50,10 @@ exactly how this marketplace is typically installed. That issue was closed
 as *not planned*, so treat this fallback as permanent rather than
 temporary; a skill and a command sharing a name is safe (the skill wins).
 
-`hooks/hooks.json` lints a file immediately after each `Edit`/`Write` and
-reports failures back to Claude to fix — it never rewrites files on its
-own. `scripts/run-markdownlint.sh` is the shared binary resolution used by
+`hooks/hooks.json` lints and auto-fixes a file immediately after each
+`Edit`/`Write` (`markdownlint-cli2 --fix`), reporting back to Claude only
+the issues it couldn't resolve on its own. `scripts/run-markdownlint.sh`
+is the shared binary resolution used by
 both the hook and the lint skill (see below). `scripts/check-links.sh` is a
 manual, on-demand link-checking wrapper around `lychee` (not run on every
 edit, since it's network-bound).
