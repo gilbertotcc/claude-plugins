@@ -41,7 +41,7 @@ blank-line placement) and, if invoked via `Bash`, bypasses the
 
 A `PostToolUse` hook (`hooks/hooks.json`) automatically runs
 `scripts/run-markdownlint.sh --fix` on every `.md` file after each
-`Edit`/`Write`, silently applying whatever markdownlint-cli2 can fix on its
+`Edit`/`Write`, silently applying whatever `markdownlint-cli2` can fix on its
 own and surfacing only the issues it couldn't resolve back to Claude.
 
 After any content modification to a `.md` file, and before considering the
