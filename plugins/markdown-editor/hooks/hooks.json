@@ -1,5 +1,5 @@
 {
-  "description": "Advisory markdownlint-cli2 check on Markdown files after each Edit/Write, so lint issues surface immediately instead of at CI time.",
+  "description": "Runs markdownlint-cli2 --fix on Markdown files after each Edit/Write, auto-fixing what it can and surfacing anything it can't back to Claude.",
   "hooks": {
     "PostToolUse": [
       {
