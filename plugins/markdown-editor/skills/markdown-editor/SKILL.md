@@ -14,21 +14,10 @@ in any repository — including ones with no Markdown linting configuration.
 
 ## Out of Scope: Temporary and Scratch Markdown
 
-This skill governs Markdown that is, or will become, part of a repository. It
-does not apply to Markdown that only exists as an intermediate artifact —
-for example, a GitHub issue or PR body drafted in a scratch file before
-being passed to `gh issue create`/`gh pr create`, or a plan/notes file
-written out for the user's reference. Content like that was never meant to
-follow repository conventions, so don't run the lint → link-check workflow
-below against it, and don't manually invoke `check-links.sh` or
-`/markdown-editor:lint` on it either.
-
-The `PostToolUse` hook (`hooks/hooks.json`) already enforces this
-automatically for the per-edit auto-lint: it only fixes `.md` files inside
-the project directory (`$CLAUDE_PROJECT_DIR`, falling back to the git
-repository root), so scratch files elsewhere — e.g. the session
-scratchpad — are left untouched. Apply the same judgment yourself for the
-manual steps this skill drives.
+Don't run the manual link-check or `/markdown-editor:lint` sweep against
+Markdown that's only an intermediate artifact (e.g. a GitHub issue/PR body
+drafted before `gh issue create`/`gh pr create`, or a plan/notes file) — it
+was never meant to follow repository conventions.
 
 ## Core Principle: Never Invent a House Style
 
