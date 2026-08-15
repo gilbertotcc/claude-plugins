@@ -1,6 +1,6 @@
 {
   "name": "markdown-editor",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Create and edit Markdown documents, automatically recognizing and following each repository's own Markdown style (or markdownlint-cli2's sane defaults when no config exists).",
   "author": {
     "name": "Gilberto Taccari",

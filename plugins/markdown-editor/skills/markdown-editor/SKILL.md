@@ -1,6 +1,6 @@
 ---
 name: markdown-editor
-description: This skill should be used when the user asks to "write a README", "create a Markdown doc", "edit this .md file", "fix the markdown", "add a section to the docs", "format this as Markdown", or whenever a `.md` file is read, created, or modified. Provides the workflow and style-resolution rules for producing Markdown that matches the repository's own conventions.
+description: This skill should be used when the user asks to "write a README", "create a Markdown doc", "edit this .md file", "fix the markdown", "add a section to the docs", "format this as Markdown", or whenever a `.md` file that belongs to the project repository is read, created, or modified. Does not apply to temporary or scratch Markdown that isn't meant to become part of the repository (e.g. a GitHub issue body being drafted, an ad hoc plan or notes file). Provides the workflow and style-resolution rules for producing Markdown that matches the repository's own conventions.
 license: MIT
 model: haiku
 ---
@@ -11,6 +11,24 @@ model: haiku
 
 Create, edit, or restructure Markdown files (README, docs, notes, changelogs)
 in any repository — including ones with no Markdown linting configuration.
+
+## Out of Scope: Temporary and Scratch Markdown
+
+This skill governs Markdown that is, or will become, part of a repository. It
+does not apply to Markdown that only exists as an intermediate artifact —
+for example, a GitHub issue or PR body drafted in a scratch file before
+being passed to `gh issue create`/`gh pr create`, or a plan/notes file
+written out for the user's reference. Content like that was never meant to
+follow repository conventions, so don't run the lint → link-check workflow
+below against it, and don't manually invoke `check-links.sh` or
+`/markdown-editor:lint` on it either.
+
+The `PostToolUse` hook (`hooks/hooks.json`) already enforces this
+automatically for the per-edit auto-lint: it only fixes `.md` files inside
+the project directory (`$CLAUDE_PROJECT_DIR`, falling back to the git
+repository root), so scratch files elsewhere — e.g. the session
+scratchpad — are left untouched. Apply the same judgment yourself for the
+manual steps this skill drives.
 
 ## Core Principle: Never Invent a House Style
 

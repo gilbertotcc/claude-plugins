@@ -51,7 +51,12 @@ temporary; a skill and a command sharing a name is safe (the skill wins).
 
 `hooks/hooks.json` lints and auto-fixes a file immediately after each
 `Edit`/`Write` (`markdownlint-cli2 --fix`), reporting back to Claude only
-the issues it couldn't resolve on its own. `scripts/run-markdownlint.sh`
+the issues it couldn't resolve on its own. It only acts on `.md` files
+inside the project directory (`$CLAUDE_PROJECT_DIR`, falling back to the
+git repository root when that's unset) — scratch/temp Markdown elsewhere,
+such as a GitHub issue body drafted in the session scratchpad before being
+passed to `gh issue create`, is left untouched, since it was never meant
+to follow repository conventions. `scripts/run-markdownlint.sh`
 is the shared binary resolution used by
 both the hook and the lint skill (see below). `scripts/check-links.sh` is a
 manual, on-demand link-checking wrapper around `lychee` (not run on every
@@ -81,6 +86,13 @@ the [lychee installation docs][lychee-install].
 Spelling/prose-style enforcement (e.g. British vs. American English) and a
 style-audit subagent are intentionally not part of this plugin — those are
 project-specific choices, not general Markdown-editing concerns.
+
+Temporary or scratch Markdown that isn't meant to become part of a
+repository — a GitHub issue/PR body drafted before being passed to `gh
+issue create`/`gh pr create`, a plan or notes file written for the user's
+reference — is also out of scope: the hook restricts itself to files
+inside the project directory, and the `markdown-editor` skill documents the
+same exclusion for the manual link-check and lint-sweep steps it drives.
 
 [markdownlint-cli2]: https://github.com/DavidAnson/markdownlint-cli2
 [lychee-install]: https://lychee.cli.rs/guides/getting-started/
