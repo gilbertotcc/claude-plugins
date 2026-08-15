@@ -1,6 +1,6 @@
 ---
 name: markdown-editor
-description: This skill should be used when the user asks to "write a README", "create a Markdown doc", "edit this .md file", "fix the markdown", "add a section to the docs", "format this as Markdown", or whenever a `.md` file is read, created, or modified. Provides the workflow and style-resolution rules for producing Markdown that matches the repository's own conventions.
+description: This skill should be used when the user asks to "write a README", "create a Markdown doc", "edit this .md file", "fix the markdown", "add a section to the docs", "format this as Markdown", or whenever a `.md` file that belongs to the project repository is read, created, or modified. Does not apply to temporary or scratch Markdown that isn't meant to become part of the repository (e.g. a GitHub issue body being drafted, an ad hoc plan or notes file). Provides the workflow and style-resolution rules for producing Markdown that matches the repository's own conventions.
 license: MIT
 model: haiku
 ---
@@ -11,6 +11,13 @@ model: haiku
 
 Create, edit, or restructure Markdown files (README, docs, notes, changelogs)
 in any repository — including ones with no Markdown linting configuration.
+
+## Out of Scope: Temporary and Scratch Markdown
+
+Don't run the manual link-check or `/markdown-editor:lint` sweep against
+Markdown that's only an intermediate artifact (e.g. a GitHub issue/PR body
+drafted before `gh issue create`/`gh pr create`, or a plan/notes file) — it
+was never meant to follow repository conventions.
 
 ## Core Principle: Never Invent a House Style
 
