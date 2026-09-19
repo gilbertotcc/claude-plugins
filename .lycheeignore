@@ -1,5 +1,1 @@
-# Access to the URL was verified by Claude Code (Sonnet 5) using WebSearch, which
-# confirmed the article is live (published 2026-05-01) after WebFetch and lychee both
-# got a 403 — Perplexity's bot filter appears to block requests from datacenter IPs
-# (e.g. GitHub Actions runners) regardless of user agent. (Last access: 2026-09-19)
 https://research.perplexity.ai/articles/designing-refining-and-maintaining-agent-skills-at-perplexity
