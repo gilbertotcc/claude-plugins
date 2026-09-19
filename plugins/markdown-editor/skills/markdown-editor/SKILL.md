@@ -14,10 +14,16 @@ in any repository — including ones with no Markdown linting configuration.
 
 ## Out of Scope: Temporary and Scratch Markdown
 
-Don't run the manual link-check or `/markdown-editor:lint` sweep against
-Markdown that's only an intermediate artifact (e.g. a GitHub issue/PR body
-drafted before `gh issue create`/`gh pr create`, or a plan/notes file) — it
-was never meant to follow repository conventions.
+This skill applies only to Markdown that's becoming part of the repository.
+Don't apply it — don't run the manual link-check, don't run
+`/markdown-editor:lint`, don't worry about repo style — for Markdown that's
+just passing through: a GitHub issue/PR body drafted before `gh issue
+create`/`gh pr create`, a plan/notes file for the conversation, a message
+for Slack/Notion/elsewhere, or anything else clearly ephemeral. Deliver
+that content directly in your response. Don't write it to a file inside
+the repository first, even temporarily, as a place to draft it — doing so
+is what pulls it into the repo-conventions workflow this section is
+telling you to skip.
 
 ## Core Principle: Never Invent a House Style
 
