@@ -22,9 +22,11 @@ create`/`gh pr create`, a plan/notes file for the conversation, a message
 for Slack/Notion/elsewhere, or anything else clearly ephemeral. Deliver
 that content directly in your response. Don't write it to a file inside
 the repository first, even temporarily, as a place to draft it, unless
-that file lives in a location `.gitignore` already excludes (the linter
-respects `.gitignore`) — drafting it anywhere else is what pulls it into
-the repo-conventions workflow this section is telling you to skip.
+the file lives in a location `.gitignore` excludes *and* the repository's
+markdownlint-cli2 config sets `gitignore: true` — that setting isn't the
+default, so check the config rather than assuming it's on. Absent that,
+drafting anywhere in the repo is what pulls the content into the
+repo-conventions workflow this section is telling you to skip.
 
 ## Core Principle: Never Invent a House Style
 
