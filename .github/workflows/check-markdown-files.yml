@@ -19,7 +19,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v7
     - name: Run Markdown linter
-      uses: DavidAnson/markdownlint-cli2-action@v24
+      uses: DavidAnson/markdownlint-cli2-action@v25
 
   check-links:
     name: Check links
